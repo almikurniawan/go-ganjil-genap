@@ -31,3 +31,28 @@ func TestCheckBilangan(t *testing.T) {
 		})
 	}
 }
+
+func BenchmarkCheckBilangan(b *testing.B) {
+	bilangans := []struct {
+		name     string
+		bil      int
+		expected string
+	}{
+		{
+			name:     "uji01",
+			bil:      4,
+			expected: "Genap",
+		},
+		{
+			name:     "uji02",
+			bil:      7,
+			expected: "Ganjil",
+		},
+	}
+
+	for _, bilangan := range bilangans {
+		b.Run(bilangan.name, func(b *testing.B) {
+			CheckBilangan(bilangan.bil)
+		})
+	}
+}
